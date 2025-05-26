@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CategoryList from './components/CategoryList';
+import CategoryPage from './components/CategoryPage';
+import ClusterPage from './components/ClusterPage';
 import './App.css';
+import NavBar from './components/NavBar';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    useEffect(() => {
+        const interval = setInterval(() => {
+            window.location.reload();
+        }, 300000); // Refresh every 10 minutes
+        
+        return () => clearInterval(interval);
+    }, []);
+
+    return (
+        <Router>
+            <div>
+                <NavBar />
+                <div className="page-layout">
+                    <div className="sidebar-left"></div>
+                    <main className="content-center">
+                        <Routes>
+                            <Route path="/" element={<CategoryList />} />
+                            <Route path="/category/:category" element={<CategoryPage />} />
+                            <Route path="/category/:category/cluster/:clusterId" element={<ClusterPage />} />
+                        </Routes>
+                    </main>
+                    <div className="sidebar-right"></div>
+                </div>
+            </div>
+        </Router>
+    );
 }
 
 export default App;
