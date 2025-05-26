@@ -8,7 +8,7 @@ const CategoryList = () => {
 
     useEffect(() => {
         console.log('Fetching categories...');
-        axios.get('${process.env.REACT_APP_API_URL}/categories')
+        axios.get(`${process.env.REACT_APP_API_URL}/categories`)
             .then(response => {
                 console.log('Categories fetched:', response.data);
                 setCategories(response.data);

@@ -6,7 +6,7 @@ const NavBar = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get('${process.env.REACT_APP_API_URL}/categories')
+        axios.get(`${process.env.REACT_APP_API_URL}/categories`)
             .then(response => setCategories(response.data))
             .catch(error => console.error('Error fetching categories:', error));
     }, []);
