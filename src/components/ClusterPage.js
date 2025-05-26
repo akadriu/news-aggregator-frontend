@@ -8,7 +8,7 @@ const ClusterPage = () => {
     const [clusterData, setClusterData] = useState(null);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/category/${category}/cluster/${clusterId}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/category/${category}/cluster/${clusterId}`)
             .then(response => {
                 setClusterData(response.data);
             })
