@@ -8,7 +8,7 @@ const CategoryPage = () => {
     const [clusters, setClusters] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/category/${category}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/category/${category}`)
             .then(response => {
                 const sortedClusters = Object.entries(response.data)
                 setClusters(sortedClusters);

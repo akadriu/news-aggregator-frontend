@@ -8,7 +8,7 @@ const CategoryList = () => {
 
     useEffect(() => {
         console.log('Fetching categories...');
-        axios.get('http://localhost:8000/categories')
+        axios.get('${process.env.REACT_APP_API_URL}/categories')
             .then(response => {
                 console.log('Categories fetched:', response.data);
                 setCategories(response.data);
@@ -40,7 +40,7 @@ const CategoryPreview = ({ category, limitSummary }) => {
     const [topClusters, setTopClusters] = useState([]);
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/category/${category}`)
+        axios.get(`${process.env.REACT_APP_API_URL}/category/${category}`)
             .then(response => {
                 const sortedClusters = Object.entries(response.data)
                     .slice(0, 3);  // Take only the top 3 clusters
