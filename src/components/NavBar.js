@@ -6,7 +6,7 @@ const NavBar = () => {
     const [categories, setCategories] = useState([]);
 
     useEffect(() => {
-        axios.get(`https://news-aggregator-backend-4zpx.onrender.com/categories`)
+        axios.get(`${process.env.REACT_APP_API_URL}/categories`)
             .then(response => setCategories(response.data))
             .catch(error => console.error('Error fetching categories:', error));
     }, []);
