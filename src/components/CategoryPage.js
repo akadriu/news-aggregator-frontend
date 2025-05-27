@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { timeDifference } from '../utils/timeUtils';
+import { Link } from 'react-router-dom';
 
 const CategoryPage = () => {
     const { category } = useParams();
@@ -54,7 +55,7 @@ const CategoryPage = () => {
                                 </a>
                             ))}
                             {clusterData.articles.length > 10 && <span>...</span>}
-                            <a href={`/category/${category}/cluster/${clusterId}`} className="view-all-link">Te gjitha lajmet</a>
+                            <Link to={`/category/${category}/cluster/${clusterId}`} className="view-all-link">Te gjitha lajmet</Link>
                         </div>
                     </li>
                 ))}
