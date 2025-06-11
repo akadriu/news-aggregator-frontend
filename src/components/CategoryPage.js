@@ -31,7 +31,7 @@ const CategoryPage = () => {
                     <li key={clusterId} className="news-cluster">
                         <div className="cluster-header">
                             {clusterData.articles[0].image_url && (
-                                <img src={clusterData.articles[0].image_url} alt="" className="article-image" onError={(e) => { e.target.src = "/fallback.jpg"; }} />
+                                <img src={clusterData.articles[0].image_url} referrerPolicy="no-referrer" alt="" className="article-image" onError={(e) => { e.target.src = "/fallback.jpg"; }} />
                             )}
                             <div className="article-details">
                                 <a href={clusterData.articles[0].link} target="_blank" rel="noopener noreferrer" className="article-title">

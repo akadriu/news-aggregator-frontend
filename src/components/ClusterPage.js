@@ -29,7 +29,7 @@ const ClusterPage = () => {
                     <li key={article.link} className="article-item">
                         <div className="cluster-header">
                             {article.image_url && (
-                                <img src={article.image_url} alt="" className="article-image" onError={(e) => { e.target.src = "/fallback.jpg"; }} />
+                                <img src={article.image_url} referrerPolicy="no-referrer" alt="" className="article-image" onError={(e) => { e.target.src = "/fallback.jpg"; }} />
                             )}
                             <div className="article-details">
                                 <a href={article.link} target="_blank" rel="noopener noreferrer" className="article-title">
