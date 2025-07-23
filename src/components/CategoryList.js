@@ -19,7 +19,7 @@ const CategoryList = () => {
     }, []);
 
     const limitSummary = (summary) => {
-        return summary.split(' ').slice(0, 100).join(' ') + '...';
+            return summary.split(' ').slice(0, 20).join(' ') + '...';
     };
 
     return (
@@ -63,16 +63,16 @@ const CategoryPreview = ({ category, limitSummary }) => {
                             )}
                             <div className="article-details">
                                 <a href={clusterData.articles[0].link} target="_blank" rel="noopener noreferrer" className="article-title">
-                                    <h3>{clusterData.articles[0].title}</h3>
+                                    <h3>    {clusterData.articles[0].title.split(' ').slice(0, 5).join(' ') + '...'} - {clusterData.articles[0].portal}</h3>
                                 </a>
                                 <p className="time-portal">{`Para ${timeDifference(clusterData.articles[0].fetch_date)} - ${clusterData.articles[0].portal}`}</p>
                                 <p>{limitSummary(clusterData.articles[0].summary)}</p>
                             </div>
                         </div>
                         <div className="links-column">
-                            {clusterData.articles.slice(1, 6).map(article => (  // Start from the second article
+                            {clusterData.articles.slice(1, 3).map(article => (  // Start from the second article
                                 <a key={article.link} href={article.link} target="_blank" rel="noopener noreferrer" className="portal-link separate-link">
-                                    {article.title}
+                                    {article.title.split(' ').slice(0, 6).join(' ') + '...'} - {article.portal}
                                 </a>
                             ))}
                         </div>

@@ -20,7 +20,9 @@ function App() {
             <div>
                 <NavBar />
                 <div className="page-layout">
-                    <div className="sidebar-left"></div>
+                    <div className="sidebar-left">
+                        <div className="sidebar-left-content">Lorem ipsum dolor sit amet...</div>
+                    </div>
                     <main className="content-center">
                         <Routes>
                             <Route path="/" element={<CategoryList />} />
@@ -28,7 +30,9 @@ function App() {
                             <Route path="/category/:category/cluster/:clusterId" element={<ClusterPage />} />
                         </Routes>
                     </main>
-                    <div className="sidebar-right"></div>
+                    <div className="sidebar-right">
+                        <div className="sidebar-right-content">Lorem ipsum dolor sit amet...</div>
+                    </div>
                 </div>
             </div>
         </Router>

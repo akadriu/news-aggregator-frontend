@@ -1,135 +1,16 @@
-/* App.css */
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-.navbar {
-  background-color: #2c0000;
-  padding: 10px 0;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding-left: 20px;
-}
-
-.logo {
-  color: white;
-  font-size: 24px;
-  font-weight: bold;
-  margin-right: 30px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 10px; /* Reduced spacing */
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 8px 10px;
-}
-
-.nav-links a:hover {
-  background-color: #4d0000;
-  border-radius: 4px;
-}
-
-.sidebar-extra {
-  color: #a55;
-  font-size: 14px;
-  position: absolute;
-  right: 20px;
-  top: 90px;
-}
-
-.main-content {
-  max-width: 760px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.card {
-  background-color: white;
-  padding: 20px;
-  border-radius: 6px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
-
-.nav-inner {
+.nav-bar {
+  background: linear-gradient(135deg, #1a0000 0%, #330000 50%, #000000 100%);
+  position: fixed;
+  top: 0;
   width: 100%;
-  max-width: 960px;
+  height: 44px;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 16px;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.hamburger {
-  background: none;
-  color: white;
-  border: none;
-  font-size: 1.5rem;
-  margin-right: 10px;
-  cursor: pointer;
-}
-
-.logo-main {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: white;
-}
-
-.logo-ai {
-  font-weight: bold;
-  font-size: 1.5rem;
-  color: red;
-}
-
-.nav-center ul {
-  list-style: none;
-  display: flex;
-  padding: 0;
-  margin: 0;
-  gap: 10px !important;
-}
-
-.nav-center ul li {
-  margin: 0 10px;
-}
-
-.nav-center ul li a {
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.sidebar-text {
-  position: fixed;
-  top: 44px;
-  left: 0;
-  width: 200px;
-  padding: 16px;
-  color: #888;
-  font-size: 0.9rem;
-  background: none;
-  z-index: 999;
-}
-
-.content {
-  margin-top: 60px;
-  margin-left: 220px; /* adjust based on sidebar width */
-  max-width: 960px;
+  padding: 0 24px;
+  border-bottom: 1px solid #cc0000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .nav-left a {
@@ -143,25 +24,17 @@ body {
   flex-grow: 1;
   display: flex;
   justify-content: center;
-  margin-left: 100px; /* increase or decrease this value as needed */
 }
 
 .nav-center ul {
   display: flex;
-  gap: 10px; /* reduce this number for tighter spacing */
-  padding: 0;
-  margin: 0;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
-
-.nav-center ul li {
-  padding: 0 1px; /* optional fine-tuning */
-}
-
-
 
 .nav-center li {
-  padding: 5px 3px;
+  padding: 12px 16px;
 }
 
 .nav-center li a {
@@ -530,6 +403,14 @@ li.news-cluster:last-of-type {
   margin-bottom: 0;
 }
 
+.nav-left a {
+  font-size: 22px;
+  font-weight: 800;
+  font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+}
+
 .logo-main {
   color: #ffffff;
 }
@@ -542,7 +423,7 @@ li.news-cluster:last-of-type {
 
 .page-layout {
   display: grid;
-  grid-template-columns: 1fr minmax(0, 600px) 1fr;
+  grid-template-columns: 1fr minmax(0, 720px) 1fr;
   gap: 16px;
   margin-top: 44px; /* height of your navbar */
   padding: 16px 8px;
@@ -574,6 +455,16 @@ li.news-cluster:last-of-type {
     width: 100%;
   }
 
+  .nav-center ul {
+    flex-direction: column;
+    background: #1a0000;
+    position: absolute;
+    top: 44px;
+    left: 0;
+    width: 100%;
+    display: none; /* toggle this with JS if you want a hamburger menu */
+  }
+
   .nav-center ul.show {
     display: flex;
   }
@@ -588,21 +479,22 @@ li.news-cluster:last-of-type {
   margin-right: 12px;
 }
 
-/* Mobile Menu Styles */
 .mobile-menu {
   position: fixed;
-  top: 44px;
-  left: 0;
-  width: 100%;
-  background: #1a0000;
-  z-index: 9999;
-  padding: 12px 16px;
-  display: none;
-  flex-direction: column;
+  top: 10;
+  left: 10;
+  width: 220px; /* adjust for 10-char items */
+  height: 100%;
+  background-color: #1a1a1a;
+  color: white;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 999;
+  overflow-y: auto;
 }
 
 .mobile-menu.open {
-  display: flex;
+  transform: translateX(0);
 }
 
 .menu-header {
@@ -633,25 +525,5 @@ li.news-cluster:last-of-type {
   color: white;
   text-decoration: none;
   font-size: 16px;
-}
-
-.sidebar-left {
-  background: transparent;
-  min-width: 80px;
-  padding: 8px;
-}
-
-.sidebar-left-content {
-  font-size: 13px;
-  color: #cccccc;
-  line-height: 1.4;
-  white-space: normal;
-}
-
-.sidebar-right-content {
-  font-size: 13px;
-  color: #b96060;
-  line-height: 1.4;
-  white-space: normal;
 }
 
