@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CategoryList from './components/CategoryList';
 import CategoryPage from './components/CategoryPage';
@@ -7,14 +7,9 @@ import './App.css';
 import NavBar from './components/NavBar';
 
 function App() {
-    useEffect(() => {
-        const interval = setInterval(() => {
-            window.location.reload();
-        }, 300000); // Refresh every 10 minutes
-        
-        return () => clearInterval(interval);
-    }, []);
-
+    // Removed the automatic page refresh that was causing issues
+    // The data will still be fresh from the backend API calls
+    
     return (
         <Router>
             <div>

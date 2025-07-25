@@ -1,25 +1,73 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { timeDifference } from '../utils/timeUtils';
 
 const ClusterPage = () => {
     const { category, clusterId } = useParams();
+    const navigate = useNavigate();
     const [clusterData, setClusterData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
+        setLoading(true);
+        setError(null);
+        
         axios.get(`${process.env.REACT_APP_API_URL}/category/${category}/cluster/${clusterId}`)
             .then(response => {
                 setClusterData(response.data);
+                setLoading(false);
             })
             .catch(error => {
                 console.error('Error fetching cluster data:', error);
+                setError(error);
+                setLoading(false);
+                
+                // If cluster not found, redirect to category page after 3 seconds
+                if (error.response && error.response.status === 404) {
+                    setTimeout(() => {
+                        navigate(`/category/${category}`);
+                    }, 3000);
+                }
             });
-    }, [category, clusterId]);
+    }, [category, clusterId, navigate]);
 
-    if (!clusterData) return <div>Loading...</div>;
+    if (loading) return <div>Loading...</div>;
+    
+    if (error) {
+        return (
+            <div className="error-container">
+                <h2>Cluster Not Found</h2>
+                <p>This news cluster is no longer available. You will be redirected to the {category} category page in a few seconds...</p>
+                <p>
+                    <a href={`/category/${category}`} onClick={(e) => {
+                        e.preventDefault();
+                        navigate(`/category/${category}`);
+                    }}>
+                        Click here to go back now
+                    </a>
+                </p>
+            </div>
+        );
+    }
 
-    const firstArticleTitle = clusterData.articles.length > 0 ? clusterData.articles[0].title : 'No Title';
+    if (!clusterData || !clusterData.articles || clusterData.articles.length === 0) {
+        return (
+            <div className="error-container">
+                <h2>No Articles Found</h2>
+                <p>This cluster doesn't contain any articles.</p>
+                <a href={`/category/${category}`} onClick={(e) => {
+                    e.preventDefault();
+                    navigate(`/category/${category}`);
+                }}>
+                    Back to {category}
+                </a>
+            </div>
+        );
+    }
+
+    const firstArticleTitle = clusterData.articles[0].title;
 
     return (
         <div className="cluster-page-container">
