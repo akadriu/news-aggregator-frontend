@@ -655,3 +655,146 @@ li.news-cluster:last-of-type {
   white-space: normal;
 }
 
+/* Add these styles to your existing App.css or MobileMenu.css */
+
+.page-layout {
+  display: grid;
+  grid-template-columns: 300px minmax(0, 720px) 1fr;
+  gap: 16px;
+  margin-top: 44px;
+  padding: 16px 8px;
+  min-height: calc(100vh - 44px);
+}
+
+.sidebar-left {
+  background: transparent;
+  min-width: 280px;
+  max-width: 320px;
+}
+
+.sidebar-right {
+  background: transparent;
+  min-width: 200px;
+}
+
+.content-center {
+  background: transparent;
+  min-width: 0; /* Allows content to shrink */
+}
+
+/* Placeholder content styling */
+.placeholder-content {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.placeholder-content h4 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #202124;
+}
+
+.placeholder-content p {
+  margin: 0;
+  font-size: 14px;
+  color: #70757a;
+  line-height: 1.4;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 1024px) {
+  .page-layout {
+    grid-template-columns: 250px minmax(0, 1fr) 200px;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-layout {
+    display: block;
+    padding: 8px;
+  }
+
+  .sidebar-left,
+  .sidebar-right {
+    display: none;
+  }
+
+  .content-center {
+    width: 100%;
+  }
+
+  /* Show person sidebar on mobile as a collapsible section */
+  .sidebar-left {
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 16px;
+  }
+  
+  .sidebar-right {
+    display: none; /* Hide right sidebar on mobile */
+  }
+}
+
+/* Navigation improvements for mobile */
+@media (max-width: 768px) {
+  .nav-center ul {
+    flex-direction: column;
+    background: #1a0000;
+    position: absolute;
+    top: 44px;
+    left: 0;
+    width: 100%;
+    display: none;
+  }
+
+  .nav-center ul.show {
+    display: flex;
+  }
+
+  .hamburger {
+    background: none;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    margin-right: 12px;
+  }
+}
+
+/* Enhanced sidebar styling */
+.sidebar-left-content,
+.sidebar-right-content {
+  position: sticky;
+  top: 60px; /* Account for navbar height + some padding */
+  height: fit-content;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
+
+/* Improved scrollbar for sidebars */
+.sidebar-left-content::-webkit-scrollbar,
+.sidebar-right-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-left-content::-webkit-scrollbar-track,
+.sidebar-right-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.sidebar-left-content::-webkit-scrollbar-thumb,
+.sidebar-right-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.sidebar-left-content::-webkit-scrollbar-thumb:hover,
+.sidebar-right-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
