@@ -137,3 +137,22 @@
     font-size: 13px;
   }
 }
+
+/* Add these styles to your existing PersonSidebar.css */
+
+.word-cloud-container {
+  padding: 20px;
+  line-height: 1.8;
+  text-align: center;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.word-cloud-item {
+  transition: all 0.2s ease;
+}
+
+.word-cloud-item:hover {
+  background-color: rgba(0, 123, 255, 0.2) !important;
+  transform: scale(1.05);
+}
