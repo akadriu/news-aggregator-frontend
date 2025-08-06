@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import CategoryList from './components/CategoryList';
 import CategoryPage from './components/CategoryPage';
 import ClusterPage from './components/ClusterPage';
 import PersonSidebar from './components/PersonSidebar';
 import TopPersonsSidebar from './components/TopPersonsSidebar';
-
-// import PersonArticlesView from './components/PersonArticlesView';
 import './App.css';
 import NavBar from './components/NavBar';
 
@@ -15,7 +13,6 @@ function AppContent() {
   const [selectedPersonData, setSelectedPersonData] = useState(null);
   const location = useLocation();
 
-  // Extract category from current path
   const getCurrentCategory = () => {
     const pathParts = location.pathname.split('/');
     if (pathParts[1] === 'category' && pathParts[2]) {
@@ -37,35 +34,37 @@ function AppContent() {
   const currentCategory = getCurrentCategory();
   const showPersonSidebar = currentCategory && location.pathname !== '/';
 
+  // ✅ Close person view every time route changes (including category)
+  useEffect(() => {
+    handlePersonClose();
+  }, [location.pathname]);
+
   return (
     <div>
       <NavBar />
       <div className="page-layout">
         <div className="sidebar-left">
-        {showPersonSidebar ? (
-          <PersonSidebar
-            category={currentCategory}
-            onPersonSelect={handlePersonSelect}
-            selectedPerson={selectedPerson}
-            selectedPersonData={selectedPersonData}
-            onPersonClose={handlePersonClose}
-          />
-        ) : (
-          <div className="sidebar-left-content">
-            <TopPersonsSidebar
+          {showPersonSidebar ? (
+            <PersonSidebar
+              category={currentCategory}
               onPersonSelect={handlePersonSelect}
               selectedPerson={selectedPerson}
               selectedPersonData={selectedPersonData}
               onPersonClose={handlePersonClose}
             />
-          </div>
-        )}
-      </div>
-
+          ) : (
+            <div className="sidebar-left-content">
+              <TopPersonsSidebar
+                onPersonSelect={handlePersonSelect}
+                selectedPerson={selectedPerson}
+                selectedPersonData={selectedPersonData}
+                onPersonClose={handlePersonClose}
+              />
+            </div>
+          )}
+        </div>
 
         <main className="content-center">
-          {/* No need to show PersonArticlesView here anymore */}
-          
           <Routes>
             <Route path="/" element={<CategoryList />} />
             <Route path="/category/:category" element={<CategoryPage />} />

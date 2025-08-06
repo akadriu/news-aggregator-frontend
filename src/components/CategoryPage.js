@@ -41,7 +41,7 @@ const CategoryPage = () => {
 
     const limitSummary = (summary) => {
         if (!summary) return '';
-        return summary.split(' ').slice(0, 20).join(' ') + '...';
+        return summary.split(' ').slice(0, 100).join(' ') + '...';
     };
 
     if (loading) return <div>Loading...</div>;
@@ -99,7 +99,7 @@ const CategoryPage = () => {
                                 )}
                                 <div className="article-details">
                                     <a href={firstArticle.link} target="_blank" rel="noopener noreferrer" className="article-title">
-                                        <h3>{firstArticle.title.split(' ').slice(0, 5).join(' ') + '...'} - {firstArticle.portal}</h3>
+                                        <h3>{firstArticle.title.split(' ').slice(0, 8).join(' ') + '...'} - {firstArticle.portal}</h3>
                                     </a>
                                     <p className="time-portal">{`Para ${timeDifference(firstArticle.fetch_date)} - ${firstArticle.portal}`}</p>
                                     <p>{limitSummary(firstArticle.summary)}</p>
