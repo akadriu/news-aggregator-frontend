@@ -566,8 +566,37 @@ li.news-cluster:last-of-type {
 
 .person-sidebar .article-meta span {
   color: #aaa;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 400;
   margin-right: 2px;
 }
 
+/* Custom Scrollbars - Consistent with PersonSidebar.css */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+  transition: background-color 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}

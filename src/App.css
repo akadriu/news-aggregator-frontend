@@ -874,3 +874,74 @@ li.news-cluster:last-of-type {
   border-radius: 3px !important;
 }
 
+/* FORCE ALL SCROLLBARS TO BE GREY - NUCLEAR OPTION */
+* {
+  scrollbar-width: thin !important;
+  scrollbar-color: #888888 #f0f0f0 !important;
+}
+
+*::-webkit-scrollbar {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f0f0f0 !important;
+  border-radius: 6px !important;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888888 !important;
+  border-radius: 6px !important;
+  border: 2px solid #f0f0f0 !important;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #666666 !important;
+}
+
+*::-webkit-scrollbar-corner {
+  background: #f0f0f0 !important;
+}
+
+/* Specific targeting for right sidebar */
+.sidebar-right,
+.sidebar-right *,
+.sidebar-right-content,
+.sidebar-right-content * {
+  scrollbar-width: thin !important;
+  scrollbar-color: #888888 #f0f0f0 !important;
+}
+
+.sidebar-right::-webkit-scrollbar,
+.sidebar-right *::-webkit-scrollbar,
+.sidebar-right-content::-webkit-scrollbar,
+.sidebar-right-content *::-webkit-scrollbar {
+  width: 12px !important;
+  background: #f0f0f0 !important;
+}
+
+.sidebar-right::-webkit-scrollbar-track,
+.sidebar-right *::-webkit-scrollbar-track,
+.sidebar-right-content::-webkit-scrollbar-track,
+.sidebar-right-content *::-webkit-scrollbar-track {
+  background: #f0f0f0 !important;
+  border-radius: 6px !important;
+}
+
+.sidebar-right::-webkit-scrollbar-thumb,
+.sidebar-right *::-webkit-scrollbar-thumb,
+.sidebar-right-content::-webkit-scrollbar-thumb,
+.sidebar-right-content *::-webkit-scrollbar-thumb {
+  background: #888888 !important;
+  border-radius: 6px !important;
+  border: 2px solid #f0f0f0 !important;
+}
+
+.sidebar-right::-webkit-scrollbar-thumb:hover,
+.sidebar-right *::-webkit-scrollbar-thumb:hover,
+.sidebar-right-content::-webkit-scrollbar-thumb:hover,
+.sidebar-right-content *::-webkit-scrollbar-thumb:hover {
+  background: #666666 !important;
+}
+
