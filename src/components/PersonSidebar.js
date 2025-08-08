@@ -14,14 +14,14 @@ const WordCloud = ({ persons, onPersonSelect, selectedPerson }) => {
     return {
       fontSize: `${normalizedSize}px`,
       fontWeight: count > (maxCount * 0.7) ? 'bold' : count > (maxCount * 0.4) ? '600' : 'normal',
-      color: `hsl(${210 + (count / maxCount) * 60}, 70%, ${60 - (count / maxCount) * 20}%)`,
+      color: `hsl(0, 0%, ${10 + (1 - (count / maxCount)) * 60}%)`,
       margin: '4px 8px',
       padding: '4px 8px',
       borderRadius: '4px',
       cursor: 'pointer',
       display: 'inline-block',
       transition: 'all 0.2s ease',
-      border: selectedPerson === personName ? '2px solid #007bff' : '1px solid transparent',
+      border: selectedPerson === personName ? '2px solid #9ba0a7ff' : '1px solid transparent',
       backgroundColor: selectedPerson === personName ? 'rgba(0, 123, 255, 0.1)' : 'rgba(0, 0, 0, 0.05)'
     };
   };
@@ -83,7 +83,6 @@ const PersonSidebar = ({ category, onPersonSelect, selectedPerson, selectedPerso
         {!selectedPerson ? (
           <>
             <h3>Persona dhe ngjarje në {category}</h3>
-            <span className="person-count">({personsList.length} persons)</span>
           </>
         ) : (
           <div className="selected-person-header">
@@ -115,8 +114,15 @@ const PersonSidebar = ({ category, onPersonSelect, selectedPerson, selectedPerso
             <div key={index} className="article-item">
               <a href={article.link} target="_blank" rel="noopener noreferrer">{article.title}</a>
               <div className="article-meta">
-                <span>{new URL(article.link).hostname.replace('www.', '')}</span> • 
-                <span>{new Date(article.published_date).toLocaleString()}</span>
+                <span>{new URL(article.link).hostname.replace('www.', '')}</span><br />
+                <span>
+                  {new Date(article.published_date)
+                    .toLocaleTimeString(undefined, {
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: true // keep AM/PM
+                    })}
+                </span>
               </div>
             </div>
           ))}

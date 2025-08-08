@@ -14,7 +14,7 @@ const WordCloud = ({ persons, onPersonSelect, selectedPerson }) => {
     return {
       fontSize: `${normalizedSize}px`,
       fontWeight: count > (maxCount * 0.7) ? 'bold' : count > (maxCount * 0.4) ? '600' : 'normal',
-      color: `hsl(${210 + (count / maxCount) * 60}, 70%, ${60 - (count / maxCount) * 20}%)`,
+      color: `hsl(0, 0%, ${10 + (1 - (count / maxCount)) * 60}%)`,
       margin: '4px 8px',
       padding: '4px 8px',
       borderRadius: '4px',
@@ -68,8 +68,7 @@ const TopPersonsSidebar = ({ onPersonSelect, selectedPerson, selectedPersonData,
       <div className="sidebar-header">
         {!selectedPerson ? (
           <>
-            <h3>Top Personat dhe ngjarjet (Të gjitha kategoritë)</h3>
-            <span className="person-count">({personList.length})</span>
+            <h3>Top Personat dhe ngjarjet</h3>
           </>
         ) : (
           <div className="selected-person-header">

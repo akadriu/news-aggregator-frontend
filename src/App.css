@@ -486,24 +486,6 @@ a .article-title:hover,
   box-sizing: border-box;
 }
 
-/* Compact scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
-}
-
 /* Text selection */
 ::selection {
   background: rgba(204, 0, 0, 0.2);
@@ -819,28 +801,6 @@ li.news-cluster:last-of-type {
   overflow-y: auto;
 }
 
-/* Improved scrollbar for sidebars */
-.sidebar-left-content::-webkit-scrollbar,
-.sidebar-right-content::-webkit-scrollbar {
-  width: 2px;
-}
-
-.sidebar-left-content::-webkit-scrollbar-track,
-.sidebar-right-content::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.sidebar-left-content::-webkit-scrollbar-thumb,
-.sidebar-right-content::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
-}
-
-.sidebar-left-content::-webkit-scrollbar-thumb:hover,
-.sidebar-right-content::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
-}
-
 .article-list {
   display: flex;
   flex-direction: column;
@@ -882,3 +842,35 @@ li.news-cluster:last-of-type {
   font-weight: 550;
   display: block; /* optional: stack links vertically for clarity */
 }
+
+.sidebar-left-content::-webkit-scrollbar,
+.sidebar-right-content::-webkit-scrollbar {
+  width: 2px !important;
+  color: #f1f1f1 !important;   /* very dark gray, nearly black */
+}
+
+.sidebar-left-content::-webkit-scrollbar-track,
+.sidebar-right-content::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+}
+
+.sidebar-left-content::-webkit-scrollbar-thumb,
+.sidebar-right-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1 !important;
+  border-radius: 1px !important;
+}
+
+.sidebar-left-content::-webkit-scrollbar-thumb:hover,
+.sidebar-right-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8 !important;
+}
+
+.sidebar-left-content::-webkit-scrollbar {
+  width: 2px !important;
+  background: #e0e0e0 !important;
+}
+.sidebar-left-content::-webkit-scrollbar-thumb {
+  background: #888 !important;
+  border-radius: 3px !important;
+}
+
