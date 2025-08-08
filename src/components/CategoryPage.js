@@ -41,22 +41,22 @@ const CategoryPage = () => {
 
     const limitSummary = (summary) => {
         if (!summary) return '';
-        return summary.split(' ').slice(0, 100).join(' ') + '...';
+        return summary.split(' ').slice(0, 80).join(' ') + '...';
     };
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div>Duke u ngarkuar...</div>;
     
     if (error) {
         return (
             <div className="error-container">
-                <h2>Category Not Found</h2>
-                <p>The category "{category}" is not available. You will be redirected to the home page in a few seconds...</p>
+                <h2>Kategoria nuk u gjet</h2>
+                <p>Kategoria "{category}" nuk është e disponueshme. Do të ridrejtoheni në faqen kryesore pas disa sekondash...</p>
                 <p>
                     <a href="/" onClick={(e) => {
                         e.preventDefault();
                         navigate('/');
                     }}>
-                        Click here to go back now
+                        Klikoni këtu për t'u kthyer tani
                     </a>
                 </p>
             </div>
@@ -67,8 +67,8 @@ const CategoryPage = () => {
         return (
             <div className="category-page">
                 <h1>{category}</h1>
-                <p>No news clusters available in this category at the moment.</p>
-                <Link to="/">← Back to Home</Link>
+                <p>Nuk ka grupe lajmesh të disponueshme në këtë kategori për momentin.</p>
+                <Link to="/">← Kthehu në Kryefaqe</Link>
             </div>
         );
     }
@@ -98,8 +98,8 @@ const CategoryPage = () => {
                                     />
                                 )}
                                 <div className="article-details">
-                                    <a href={firstArticle.link} target="_blank" rel="noopener noreferrer" className="article-title">
-                                        <h3>{firstArticle.title.split(' ').slice(0, 8).join(' ') + '...'} - {firstArticle.portal}</h3>
+                                    <a href={firstArticle.link} target="_blank" rel="noopener noreferrer">
+                                        <h3 className="article-title">{firstArticle.title} - {firstArticle.portal}</h3>
                                     </a>
                                     <p className="time-portal">{`Para ${timeDifference(firstArticle.fetch_date)} - ${firstArticle.portal}`}</p>
                                     <p>{limitSummary(firstArticle.summary)}</p>
@@ -108,7 +108,7 @@ const CategoryPage = () => {
                             <div className="links-column">
                                 {clusterData.articles.slice(1, 3).map(article => (
                                     <a key={article.link} href={article.link} target="_blank" rel="noopener noreferrer" className="portal-link separate-link">
-                                        {article.title.split(' ').slice(0, 6).join(' ') + '...'} - {article.portal}
+                                        {article.title} - {article.portal}
                                     </a>
                                 ))}
                             </div>
@@ -119,7 +119,7 @@ const CategoryPage = () => {
                                     </a>
                                 ))}
                                 {clusterData.articles.length > 10 && <span>...</span>}
-                                <Link to={`/category/${category}/cluster/${clusterId}`} className="view-all-link">Te gjitha lajmet</Link>
+                                {clusterData.articles.length >= 4 && (<Link to={`/category/${category}/cluster/${clusterId}`} className="view-all-link">Te gjitha lajmet</Link>)}
                             </div>
                         </li>
                     );

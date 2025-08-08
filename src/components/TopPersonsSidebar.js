@@ -64,7 +64,7 @@ const TopPersonsSidebar = ({ onPersonSelect, selectedPerson, selectedPersonData,
   const personList = Object.entries(topPersons);
 
   return (
-    <div className="person-sidebar">
+    <div className="sidebar-left-content person-sidebar">
       <div className="sidebar-header">
         {!selectedPerson ? (
           <>

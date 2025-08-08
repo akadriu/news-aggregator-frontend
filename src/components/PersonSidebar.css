@@ -566,3 +566,6 @@ li.news-cluster:last-of-type {
   background-color: #e9ecef;
   color: #495057;
 }
+
+.sidebar-left-content::-webkit-scrollbar { width: 2px; }
+.sidebar-left-content::-webkit-scrollbar-thumb { background: #bbb; }

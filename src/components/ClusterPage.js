@@ -38,14 +38,14 @@ const ClusterPage = () => {
     if (error) {
         return (
             <div className="error-container">
-                <h2>Cluster Not Found</h2>
-                <p>This news cluster is no longer available. You will be redirected to the {category} category page in a few seconds...</p>
+                <h2>Ky grup nuk u gjet</h2>
+                <p>Ky grup lajmesh nuk është më i disponueshëm. Do të ridrejtoheni në faqen e kategorisë {category} pas disa sekondash...</p>
                 <p>
                     <a href={`/category/${category}`} onClick={(e) => {
                         e.preventDefault();
                         navigate(`/category/${category}`);
                     }}>
-                        Click here to go back now
+                        Klikoni këtu për t'u kthyer tani
                     </a>
                 </p>
             </div>
@@ -55,8 +55,8 @@ const ClusterPage = () => {
     if (!clusterData || !clusterData.articles || clusterData.articles.length === 0) {
         return (
             <div className="error-container">
-                <h2>No Articles Found</h2>
-                <p>This cluster doesn't contain any articles.</p>
+                <h2>Nuk u gjetën artikuj</h2>
+                <p>Ky klaster nuk përmban asnjë artikull</p>
                 <a href={`/category/${category}`} onClick={(e) => {
                     e.preventDefault();
                     navigate(`/category/${category}`);
@@ -80,11 +80,11 @@ const ClusterPage = () => {
                                 <img src={article.image_url} referrerPolicy="no-referrer" alt="" className="article-image" onError={(e) => { e.target.src = "/fallback.jpg"; }} />
                             )}
                             <div className="article-details">
-                                <a href={article.link} target="_blank" rel="noopener noreferrer" className="article-title">
-                                    <h3>{article.title}</h3>
+                                <a href={article.link} target="_blank" rel="noopener noreferrer">
+                                    <h3 className="article-title">{article.title}</h3>
                                 </a>
                                 <p className="time-portal">{`Para ${timeDifference(article.fetch_date)} - ${article.portal}`}</p>
-                                <p>{article.summary.split(' ').slice(0, 100).join(' ') + '...'}</p>
+                                <p>{article.summary.split(' ').slice(0, 80).join(' ') + '...'}</p>
                             </div>
                         </div>
                     </li>
