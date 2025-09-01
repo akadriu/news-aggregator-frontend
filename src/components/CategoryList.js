@@ -19,7 +19,7 @@ const CategoryList = () => {
     }, []);
 
     const limitSummary = (summary) => {
-            return summary.split(' ').slice(0, 80).join(' ') + '...';
+            return summary.split(' ').slice(0, 40).join(' ') + '...';
     };
 
     return (

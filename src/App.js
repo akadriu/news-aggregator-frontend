@@ -5,7 +5,9 @@ import CategoryPage from './components/CategoryPage';
 import ClusterPage from './components/ClusterPage';
 import PersonSidebar from './components/PersonSidebar';
 import TopPersonsSidebar from './components/TopPersonsSidebar';
+import SearchSidebar from './components/SearchSidebar'; // Import the new component
 import './App.css';
+import './components/SearchSidebar.css'; // Import the CSS
 import NavBar from './components/NavBar';
 
 function AppContent() {
@@ -74,10 +76,10 @@ function AppContent() {
 
         <div className="sidebar-right">
           <div className="sidebar-right-content">
-            <div className="placeholder-content">
-              <h4>Info Plus</h4>
-              <p>Ne ndertim...</p>
-            </div>
+            {/* Add the SearchSidebar component */}
+            <SearchSidebar />
+            
+
           </div>
         </div>
       </div>

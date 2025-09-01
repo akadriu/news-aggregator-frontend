@@ -84,7 +84,7 @@ const ClusterPage = () => {
                                     <h3 className="article-title">{article.title}</h3>
                                 </a>
                                 <p className="time-portal">{`Para ${timeDifference(article.fetch_date)} - ${article.portal}`}</p>
-                                <p>{article.summary.split(' ').slice(0, 80).join(' ') + '...'}</p>
+                                <p>{article.summary.split(' ').slice(0, 60).join(' ') + '...'}</p>
                             </div>
                         </div>
                     </li>

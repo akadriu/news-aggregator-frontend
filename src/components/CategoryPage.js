@@ -41,7 +41,7 @@ const CategoryPage = () => {
 
     const limitSummary = (summary) => {
         if (!summary) return '';
-        return summary.split(' ').slice(0, 80).join(' ') + '...';
+        return summary.split(' ').slice(0, 40).join(' ') + '...';
     };
 
     if (loading) return <div>Duke u ngarkuar...</div>;
