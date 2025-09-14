@@ -55,7 +55,7 @@ const TopPersonsSidebar = ({ onPersonSelect, selectedPerson, selectedPersonData,
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_URL}/persons/top/10`)
+      .get(`${process.env.REACT_APP_API_URL}/persons`)
       .then((response) => setTopPersons(response.data))
       .catch((error) => console.error('Failed to load top persons:', error))
       .finally(() => setLoading(false));
