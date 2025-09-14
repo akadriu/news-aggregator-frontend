@@ -84,7 +84,7 @@ const PersonSidebar = ({ category, onPersonSelect, selectedPerson, selectedPerso
       <div className="sidebar-header">
         {!selectedPerson ? (
           <>
-            <h3>Persona dhe ngjarje në {category}</h3>
+            <h3>Persona dhe entitete në {category}</h3>
           </>
         ) : (
           <div className="selected-person-header">
