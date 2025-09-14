@@ -3,7 +3,8 @@ import axios from 'axios';
 import './PersonSidebar.css';
 
 const WordCloud = ({ persons, onPersonSelect, selectedPerson }) => {
-  const personsList = Object.entries(persons);
+  // Sort persons by count in descending order
+  const personsList = Object.entries(persons).sort(([, a], [, b]) => b.count - a.count);
   
   // Calculate font sizes based on article counts
   const getPersonStyle = (personName, count, maxCount, minCount) => {
@@ -75,7 +76,8 @@ const PersonSidebar = ({ category, onPersonSelect, selectedPerson, selectedPerso
     }
   };
 
-  const personsList = Object.entries(persons);
+  // Sort persons by count for the empty state check
+  const personsList = Object.entries(persons).sort(([, a], [, b]) => b.count - a.count);
 
   return (
     <div className="sidebar-left-content person-sidebar">
