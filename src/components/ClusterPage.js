@@ -45,7 +45,7 @@ const ClusterPage = () => {
                         e.preventDefault();
                         navigate(`/category/${category}`);
                     }}>
-                        Klikoni këtu për t'u kthyer tani
+                        
                     </a>
                 </p>
             </div>
@@ -55,13 +55,13 @@ const ClusterPage = () => {
     if (!clusterData || !clusterData.articles || clusterData.articles.length === 0) {
         return (
             <div className="error-container">
-                <h2>Nuk u gjetën artikuj</h2>
-                <p>Ky klaster nuk përmban asnjë artikull</p>
+                <h2> </h2>
+                <p> </p>
                 <a href={`/category/${category}`} onClick={(e) => {
                     e.preventDefault();
                     navigate(`/category/${category}`);
                 }}>
-                    Back to {category}
+                    {/* Back to  {category} */}
                 </a>
             </div>
         );

@@ -12,9 +12,9 @@ const CategoryPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        setLoading(true);  // Ensure loading starts as true
+        setLoading(true);
         setError(null);
-        setClusters([]); // Reset clusters to prevent stale data
+        setClusters([]);
         
         axios.get(`${process.env.REACT_APP_API_URL}/category/${category}`)
             .then(response => {
@@ -24,14 +24,13 @@ const CategoryPage = () => {
                 } else {
                     setClusters([]);
                 }
-                setLoading(false); // Only set loading false after data is processed
+                setLoading(false);
             })
             .catch(error => {
                 console.error(`Error fetching data for category ${category}:`, error);
                 setError(error);
                 setLoading(false);
                 
-                // If category not found, redirect to home after 3 seconds
                 if (error.response && error.response.status === 404) {
                     setTimeout(() => {
                         navigate('/');
@@ -44,17 +43,16 @@ const CategoryPage = () => {
         if (!summary) return '';
         return summary.split(' ').slice(0, 40).join(' ') + '...';
     };
-
-    // Show loading state FIRST - this prevents the flash of "no content"
+    
+    // Show ONLY loading message - no category title, no other content
     if (loading) {
         return (
-            <div className="category-page">
-                <h1>{category}</h1>
+            <div className="loading-container">
+                <p> </p>
             </div>
         );
     }
     
-    // Show error state if there's an error
     if (error) {
         return (
             <div className="error-container">
@@ -72,7 +70,6 @@ const CategoryPage = () => {
         );
     }
 
-    // Only show "no content" message after loading is complete and we confirmed there are no clusters
     if (clusters.length === 0) {
         return (
             <div className="category-page">
@@ -83,15 +80,14 @@ const CategoryPage = () => {
         );
     }
 
-    // Render the actual content
+    // Show everything together - category title AND content
     return (
         <div className="category-page">
             <h1>{category}</h1>
             <ul>
                 {clusters.map(([clusterId, clusterData]) => {
-                    // Safety check for cluster data structure
                     if (!clusterData || !clusterData.articles || clusterData.articles.length === 0) {
-                        return null; // Skip invalid clusters
+                        return null;
                     }
 
                     const firstArticle = clusterData.articles[0];
