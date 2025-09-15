@@ -38,8 +38,8 @@ const ClusterPage = () => {
     if (error) {
         return (
             <div className="error-container">
-                <h2>Ky grup nuk u gjet</h2>
-                <p>Ky grup lajmesh nuk është më i disponueshëm. Do të ridrejtoheni në faqen e kategorisë {category} pas disa sekondash...</p>
+                <h2> </h2>
+                <p> </p>
                 <p>
                     <a href={`/category/${category}`} onClick={(e) => {
                         e.preventDefault();

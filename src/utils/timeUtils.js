@@ -4,7 +4,7 @@ export const timeDifference = (fetchDate) => {
     const diffInMinutes = Math.floor((now - fetchTime) / (1000 * 60) - 120);
 
     if (diffInMinutes < 60) {
-        return `${diffInMinutes} minuta`;
+        return `${diffInMinutes} minutash`;
     } else if (diffInMinutes < 24 * 60) {
         const diffInHours = Math.floor(diffInMinutes / 60);
         return `${diffInHours} ore`;
