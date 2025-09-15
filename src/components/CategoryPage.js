@@ -12,8 +12,9 @@ const CategoryPage = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        setLoading(true);
+        setLoading(true);  // Ensure loading starts as true
         setError(null);
+        setClusters([]); // Reset clusters to prevent stale data
         
         axios.get(`${process.env.REACT_APP_API_URL}/category/${category}`)
             .then(response => {
@@ -23,7 +24,7 @@ const CategoryPage = () => {
                 } else {
                     setClusters([]);
                 }
-                setLoading(false);
+                setLoading(false); // Only set loading false after data is processed
             })
             .catch(error => {
                 console.error(`Error fetching data for category ${category}:`, error);
@@ -44,8 +45,16 @@ const CategoryPage = () => {
         return summary.split(' ').slice(0, 40).join(' ') + '...';
     };
 
-    if (loading) return <div>Duke u ngarkuar...</div>;
+    // Show loading state FIRST - this prevents the flash of "no content"
+    if (loading) {
+        return (
+            <div className="category-page">
+                <h1>{category}</h1>
+            </div>
+        );
+    }
     
+    // Show error state if there's an error
     if (error) {
         return (
             <div className="error-container">
@@ -63,6 +72,7 @@ const CategoryPage = () => {
         );
     }
 
+    // Only show "no content" message after loading is complete and we confirmed there are no clusters
     if (clusters.length === 0) {
         return (
             <div className="category-page">
@@ -73,6 +83,7 @@ const CategoryPage = () => {
         );
     }
 
+    // Render the actual content
     return (
         <div className="category-page">
             <h1>{category}</h1>
@@ -119,7 +130,11 @@ const CategoryPage = () => {
                                     </a>
                                 ))}
                                 {clusterData.articles.length > 10 && <span>...</span>}
-                                {clusterData.articles.length >= 4 && (<Link to={`/category/${category}/cluster/${clusterId}`} className="view-all-link">Te gjitha lajmet</Link>)}
+                                {clusterData.articles.length >= 4 && (
+                                    <Link to={`/category/${category}/cluster/${clusterId}`} className="view-all-link">
+                                        Te gjitha lajmet
+                                    </Link>
+                                )}
                             </div>
                         </li>
                     );

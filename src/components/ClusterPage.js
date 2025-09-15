@@ -33,7 +33,7 @@ const ClusterPage = () => {
             });
     }, [category, clusterId, navigate]);
 
-    if (loading) return <div>Loading...</div>;
+    // if (loading) return <div>Loading...</div>;
     
     if (error) {
         return (
