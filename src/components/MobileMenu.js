@@ -5,9 +5,6 @@ import './MobileMenu.css';
 const MobileMenu = ({ isOpen, onClose, categories }) => {
   return (
     <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
-      <div className="menu-header">
-        <button onClick={onClose} className="close-btn">X</button>
-      </div>
       <ul className="menu-links">
         <li><Link to="/category/Kryesore" onClick={onClose}>Kryesore</Link></li>
         {categories
