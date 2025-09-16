@@ -253,6 +253,10 @@ function AppContent() {
 }
 
 function App() {
+  useEffect(() => {
+  document.body.classList.add('hydrated');
+  }, []);
+
   return (
     <Router>
       <AppContent />
