@@ -963,10 +963,27 @@ body.hydrated .mobile-backdrop {
   color: #ff6666;
 }
 
-
-
 /* Override any fixed widths in mobile menu */
 .mobile-menu * {
   max-width: none !important;
   width: auto !important;
+}
+
+/* MOBILE FIX: let the X in PersonSidebar stay clickable */
+@media (max-width: 768px) {
+  /* Make the nav-arrows container transparent to taps except on the actual buttons */
+  .mobile-nav-arrows { pointer-events: none; }
+  .mobile-nav-arrows button,
+  .mobile-nav-arrows .arrow { pointer-events: auto; }
+
+  /* Sidebar close button can now sit top-right and receive taps */
+  .person-sidebar .close-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    z-index: 20001;     /* higher than panel content */
+    pointer-events: auto;
+  }
+
+  .person-sidebar { position: relative; }
 }

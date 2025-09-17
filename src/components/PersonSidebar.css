@@ -600,3 +600,32 @@ li.news-cluster:last-of-type {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
 }
+
+/* Ensure the panel can position the close button */
+.person-sidebar {
+  position: relative;
+}
+
+/* Desktop-only ✕ positioning */
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  color: #6c757d;
+
+  z-index: 10001;       /* make sure it's on top */
+  pointer-events: auto; /* ensure clicks are received */
+}
+
+.person-sidebar {
+  position: relative;   /* so absolute positioning works */
+  z-index: 10000;       /* lower than the button */
+}
+
+

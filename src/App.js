@@ -16,7 +16,6 @@ const SearchSidebar = lazy(() => import('./components/SearchSidebar'));
 const LoadingSpinner = ({ className = "" }) => (
   <div className={`loading-spinner ${className}`}>
     <div className="spinner"></div>
-    <p>Duke u ngarkuar...</p>
   </div>
 );
 
