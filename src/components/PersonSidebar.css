@@ -628,4 +628,20 @@ li.news-cluster:last-of-type {
   z-index: 10000;       /* lower than the button */
 }
 
+/* Add this rule to PersonSidebar.css to make the sidebar sticky */
+.sidebar-left-content.person-sidebar {
+  position: sticky;
+  top: 60px;
+  height: fit-content;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
 
+/* Alternative: If you want to target it more broadly, you can also add: */
+.person-sidebar {
+  position: sticky;
+  top: 60px;
+  height: fit-content;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+}
