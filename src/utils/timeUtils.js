@@ -1,9 +1,20 @@
 export const timeDifference = (fetchDate) => {
     const now = new Date();
+    
+    // Your Python sends: "2025-09-27T18:10:13" (local time format)
+    // JavaScript will interpret this as local time, which is correct
     const fetchTime = new Date(fetchDate);
-    const diffInMinutes = Math.floor((now - fetchTime) / (1000 * 60) );
+    
+    const diffInMinutes = Math.floor((now - fetchTime) / (1000 * 60));
 
-    if (diffInMinutes < 60) {
+    // Debug logging (remove after testing)
+    console.log(`Now: ${now.toLocaleString()}`);
+    console.log(`Fetch: ${fetchTime.toLocaleString()}`);
+    console.log(`Diff: ${diffInMinutes} minutes`);
+
+    if (diffInMinutes < 0) {
+        return "tani";
+    } else if (diffInMinutes < 60) {
         return `${diffInMinutes} minutash`;
     } else if (diffInMinutes < 24 * 60) {
         const diffInHours = Math.floor(diffInMinutes / 60);
