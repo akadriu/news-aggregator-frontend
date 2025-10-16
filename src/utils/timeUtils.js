@@ -3,7 +3,9 @@ export const timeDifference = (fetchDate) => {
     
     // Your Python sends: "2025-09-27T18:10:13" (local time format)
     // JavaScript will interpret this as local time, which is correct
-    const fetchTime = new Date(fetchDate);
+    const fetchTime = new Date(
+         fetchDate.replace(" ", "T") + (fetchDate.endsWith("Z") ? "" : "Z")
+    );
     
     const diffInMinutes = Math.floor((now - fetchTime) / (1000 * 60));
 
