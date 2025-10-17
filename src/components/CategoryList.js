@@ -111,7 +111,7 @@ const CategoryPreview = ({ category, topClusters, limitSummary }) => {
                                 <a href={clusterData.articles[0].link} target="_blank" rel="noopener noreferrer">
                                     <h3 className="article-title">{clusterData.articles[0].title} - {clusterData.articles[0].portal}</h3>
                                 </a>
-                                <p className="time-portal">{`Para ${timeDifference(clusterData.articles[0].fetch_date)} - ${clusterData.articles[0].portal}`}</p>
+                                <p className="time-portal">{`${timeDifference(clusterData.articles[0].fetch_date)} - ${clusterData.articles[0].portal}`}</p>
                                 <p>{limitSummary(clusterData.articles[0].summary)}</p>
                             </div>
                         </div>

@@ -83,7 +83,7 @@ const ClusterPage = () => {
                                 <a href={article.link} target="_blank" rel="noopener noreferrer">
                                     <h3 className="article-title">{article.title}</h3>
                                 </a>
-                                <p className="time-portal">{`Para ${timeDifference(article.fetch_date)} - ${article.portal}`}</p>
+                                <p className="time-portal">{`${timeDifference(article.fetch_date)} - ${article.portal}`}</p>
                                 <p>{article.summary.split(' ').slice(0, 60).join(' ') + '...'}</p>
                             </div>
                         </div>

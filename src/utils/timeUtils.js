@@ -14,15 +14,15 @@ export const timeDifference = (fetchDate) => {
     console.log(`Fetch: ${fetchTime.toLocaleString()}`);
     console.log(`Diff: ${diffInMinutes} minutes`);
 
-    if (diffInMinutes < 0) {
-        return "tani";
+    if (diffInMinutes < 11) {
+        return "Tani";
     } else if (diffInMinutes < 60) {
-        return `${diffInMinutes} minutash`;
+        return `Para ${diffInMinutes} minutash`;
     } else if (diffInMinutes < 24 * 60) {
         const diffInHours = Math.floor(diffInMinutes / 60);
-        return `${diffInHours} ore`;
+        return `Para ${diffInHours} ore`;
     } else {
         const diffInDays = Math.floor(diffInMinutes / (24 * 60));
-        return `${diffInDays} dite`;
+        return `Para ${diffInDays} dite`;
     }
 };

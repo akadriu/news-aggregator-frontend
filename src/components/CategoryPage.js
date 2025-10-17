@@ -108,7 +108,7 @@ const CategoryPage = () => {
                                     <a href={firstArticle.link} target="_blank" rel="noopener noreferrer">
                                         <h3 className="article-title">{firstArticle.title} - {firstArticle.portal}</h3>
                                     </a>
-                                    <p className="time-portal">{`Para ${timeDifference(firstArticle.fetch_date)} - ${firstArticle.portal}`}</p>
+                                    <p className="time-portal">{`${timeDifference(firstArticle.fetch_date)} - ${firstArticle.portal}`}</p>
                                     <p>{limitSummary(firstArticle.summary)}</p>
                                 </div>
                             </div>
