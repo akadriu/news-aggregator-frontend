@@ -1,23 +1,16 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import './components/SearchSidebar.css';
 import NavBar from './components/NavBar';
 
-// Lazy load components
-const CategoryList = lazy(() => import('./components/CategoryList'));
-const CategoryPage = lazy(() => import('./components/CategoryPage'));
-const ClusterPage = lazy(() => import('./components/ClusterPage'));
-const PersonSidebar = lazy(() => import('./components/PersonSidebar'));
-const TopPersonsSidebar = lazy(() => import('./components/TopPersonsSidebar'));
-const SearchSidebar = lazy(() => import('./components/SearchSidebar'));
-
-// Loading fallback component
-const LoadingSpinner = ({ className = "" }) => (
-  <div className={`loading-spinner ${className}`}>
-    <div className="spinner"></div>
-  </div>
-);
+// Direct imports instead of lazy
+import CategoryList from './components/CategoryList';
+import CategoryPage from './components/CategoryPage';
+import ClusterPage from './components/ClusterPage';
+import PersonSidebar from './components/PersonSidebar';
+import TopPersonsSidebar from './components/TopPersonsSidebar';
+import SearchSidebar from './components/SearchSidebar';
 
 // Custom hook to detect mobile
 function useIsMobile() {
@@ -39,7 +32,7 @@ function useIsMobile() {
 function AppContent() {
   const [selectedPerson, setSelectedPerson] = useState(null);
   const [selectedPersonData, setSelectedPersonData] = useState(null);
-  const [mobileView, setMobileView] = useState('center'); // 'left', 'center', 'right'
+  const [mobileView, setMobileView] = useState('center');
   const location = useLocation();
   const isMobile = useIsMobile();
 
@@ -64,13 +57,11 @@ function AppContent() {
   const currentCategory = getCurrentCategory();
   const showPersonSidebar = currentCategory && location.pathname !== '/';
 
-  // Close person view and reset to center when route changes
   useEffect(() => {
     handlePersonClose();
     setMobileView('center');
   }, [location.pathname]);
 
-  // Mobile navigation functions with better debugging
   const goToLeftSidebar = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -92,7 +83,6 @@ function AppContent() {
     setMobileView('center');
   };
 
-  // Debug effect
   useEffect(() => {
     console.log('=== MOBILE VIEW CHANGED ===');
     console.log('New state:', mobileView);
@@ -105,7 +95,6 @@ function AppContent() {
     <div>
       <NavBar />
           
-      {/* Mobile Navigation Arrows - Only show on mobile */}
       {isMobile && (
         <div className="mobile-nav-arrows" style={{
           position: 'fixed',
@@ -164,7 +153,7 @@ function AppContent() {
               }}
               title="Kryesore"
             >
-              ●
+              ◆
             </button>
           )}
           
@@ -188,7 +177,7 @@ function AppContent() {
                 justifyContent: 'center',
                 fontWeight: 'bold'
               }}
-              title="Kërko"
+              title="Këro"
             >
               ▶
             </button>
@@ -201,39 +190,35 @@ function AppContent() {
         <div 
           className={`sidebar-left ${isMobile && mobileView === 'left' ? 'mobile-active' : ''}`}
         >
-          <Suspense fallback={<LoadingSpinner className="sidebar-loading" />}>
-            {showPersonSidebar ? (
-              <PersonSidebar
-                category={currentCategory}
+          {showPersonSidebar ? (
+            <PersonSidebar
+              category={currentCategory}
+              onPersonSelect={handlePersonSelect}
+              selectedPerson={selectedPerson}
+              selectedPersonData={selectedPersonData}
+              onPersonClose={handlePersonClose}
+            />
+          ) : (
+            <div className="sidebar-left-content">
+              <TopPersonsSidebar
                 onPersonSelect={handlePersonSelect}
                 selectedPerson={selectedPerson}
                 selectedPersonData={selectedPersonData}
                 onPersonClose={handlePersonClose}
               />
-            ) : (
-              <div className="sidebar-left-content">
-                <TopPersonsSidebar
-                  onPersonSelect={handlePersonSelect}
-                  selectedPerson={selectedPerson}
-                  selectedPersonData={selectedPersonData}
-                  onPersonClose={handlePersonClose}
-                />
-              </div>
-            )}
-          </Suspense>
+            </div>
+          )}
         </div>
 
         {/* CENTER CONTENT */}
         <main 
           className={`content-center ${isMobile && mobileView === 'center' ? 'mobile-active' : ''}`}
         >
-          <Suspense fallback={<LoadingSpinner className="main-loading" />}>
-            <Routes>
-              <Route path="/" element={<CategoryList />} />
-              <Route path="/category/:category" element={<CategoryPage />} />
-              <Route path="/category/:category/cluster/:clusterId" element={<ClusterPage />} />
-            </Routes>
-          </Suspense>
+          <Routes>
+            <Route path="/" element={<CategoryList />} />
+            <Route path="/category/:category" element={<CategoryPage />} />
+            <Route path="/category/:category/cluster/:clusterId" element={<ClusterPage />} />
+          </Routes>
         </main>
 
         {/* RIGHT SIDEBAR */}
@@ -241,9 +226,7 @@ function AppContent() {
           className={`sidebar-right ${isMobile && mobileView === 'right' ? 'mobile-active' : ''}`}
         >
           <div className="sidebar-right-content">
-            <Suspense fallback={<LoadingSpinner className="sidebar-loading" />}>
-              <SearchSidebar />
-            </Suspense>
+            <SearchSidebar />
           </div>
         </div>
       </div>
@@ -253,7 +236,7 @@ function AppContent() {
 
 function App() {
   useEffect(() => {
-  document.body.classList.add('hydrated');
+    document.body.classList.add('hydrated');
   }, []);
 
   return (
