@@ -97,7 +97,9 @@ const PersonSidebar = ({ category, onPersonSelect, selectedPerson, selectedPerso
       {/* If no person selected, show word cloud */}
       {!selectedPerson ? (
         loading ? (
-          <div className="loading">Loading persons...</div>
+          <div className="loading" style={{ minHeight: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            Loading persons...
+          </div>
         ) : error ? (
           <div className="error">{error}</div>
         ) : personsList.length === 0 ? (
