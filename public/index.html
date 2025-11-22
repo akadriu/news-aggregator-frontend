@@ -42,6 +42,16 @@
 
       gtag('config', 'G-28L0G833Z6');
     </script>
+  <script>
+  if (window.location.hostname === "lajmai.com") {
+    const newUrl =
+      "https://lajm.ai" +
+      window.location.pathname +
+      window.location.search +
+      window.location.hash;
+    window.location.replace(newUrl);
+  }
+</script>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
