@@ -36,8 +36,13 @@ const NavBar = () => {
                   <Link to={`/category/${category}`}>{category}</Link>
                 </li>
               ))}
+
+              <li>
+                <Link to="/impressum">Rreth nesh</Link>
+              </li>
             </ul>
           </div>
+
         </div>
       </nav>
 

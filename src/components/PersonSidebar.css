@@ -625,7 +625,7 @@ li.news-cluster:last-of-type {
 
 .person-sidebar {
   position: relative;   /* so absolute positioning works */
-  z-index: 10000;       /* lower than the button */
+  z-index: 1;       /* lower than the button */
 }
 
 /* Add this rule to PersonSidebar.css to make the sidebar sticky */

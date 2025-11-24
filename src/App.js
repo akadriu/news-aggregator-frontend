@@ -11,6 +11,7 @@ import ClusterPage from './components/ClusterPage';
 import PersonSidebar from './components/PersonSidebar';
 import TopPersonsSidebar from './components/TopPersonsSidebar';
 import SearchSidebar from './components/SearchSidebar';
+import Impressum from './components/Impressum';
 
 // Custom hook to detect mobile
 function useIsMobile() {
@@ -218,6 +219,7 @@ function AppContent() {
             <Route path="/" element={<CategoryList />} />
             <Route path="/category/:category" element={<CategoryPage />} />
             <Route path="/category/:category/cluster/:clusterId" element={<ClusterPage />} />
+            <Route path="/impressum" element={<Impressum />} />
           </Routes>
         </main>
 

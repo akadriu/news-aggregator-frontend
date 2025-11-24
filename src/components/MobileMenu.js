@@ -14,6 +14,7 @@ const MobileMenu = ({ isOpen, onClose, categories }) => {
               <Link to={`/category/${category}`} onClick={onClose}>{category}</Link>
             </li>
         ))}
+        <li><Link to="/impressum" onClick={onClose}>Rreth nesh</Link></li>
       </ul>
     </div>
   );
