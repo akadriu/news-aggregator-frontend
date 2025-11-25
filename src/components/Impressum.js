@@ -28,33 +28,37 @@ function Impressum() {
         marginBottom: '15px'
       }}>
         <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          Kjo faqe shoqëron një agregator lajmesh në shqip, të ndërtuar me inteligjencë artificiale. 
-          Qëllimi është të sjellë lajmet kryesore nga disa media në një vend të vetëm, pa tituj mashtrues 
-          dhe pa clickbait, në mënyrë që të kuptohet më qartë çfarë po ndodh.
+          Kjo faqe shoqëron një agregator lajmesh në shqip, të ndërtuar me inteligjencë artificiale.
+          Qëllimi është të sjellë lajmet kryesore nga disa media në një vend të vetëm, në mënyrë që
+          të kuptohet më qartë çfarë po ndodh.
         </p>
         
         <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          Sistemi mbledh lajmet e fundit, i grupon sipas temave dhe ngjarjeve dhe ndihmon të krahasohet 
-          se si media të ndryshme raportojnë për të njëjtën histori. Përveç vetë lajmeve, platforma 
-          tregon edhe se kush është në qendër të vëmendjes.
+          Sistemi mbledh lajmet e fundit nga faqet relevante në gjuhën shqipe, i grupon sipas temave
+          dhe ngjarjeve dhe ndihmon të krahasohet se si media të ndryshme raportojnë për të njëjtën
+          histori. Përveç vetë lajmeve, platforma tregon edhe se kush është në qendër të vëmendjes.
         </p>
         
         <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          <strong style={{ color: '#1a1a1a' }}>Majtas</strong> shfaqet lista e entiteteve që lakohen më së shumti në lajmet e 36 orëve 
-          të fundit. Këtu mund të shihni politikanë, institucione, kompani, vende dhe ngjarje që përmenden 
-          më shpesh dhe të kuptoni se kush dominon diskursin publik në këtë moment.
+          <strong style={{ color: '#1a1a1a' }}>Majtas</strong> shfaqet lista e entiteteve që përmenden
+          më së shumti në lajmet e 36 orëve të fundit. Kjo ju lejon të shihni kush dominon diskursin
+          publik në një moment të caktuar.
         </p>
         
         <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          <strong style={{ color: '#1a1a1a' }}>Djathtas</strong> mund të përdorni kërkimin për të kërkuar brenda lajmeve të 36 orëve 
-          të fundit për çdo emër, temë ose fjalë kyçe që ju intereson dhe të shihni menjëherë të gjitha 
-          artikujt që lidhen me të.
+          <strong style={{ color: '#1a1a1a' }}>Djathtas</strong> mund të përdorni kërkimin për të
+          kërkuar brenda lajmeve të 36 orëve të fundit për çdo emër, temë ose fjalë kyçe që ju
+          intereson dhe të shihni menjëherë të gjitha artikujt që lidhen me të.
         </p>
         
         <p style={{ marginBottom: '25px', color: '#2a2a2a' }}>
-          LajmAI nuk është portal lajmesh dhe nuk përfaqëson asnjë parti apo media. Është një mjet 
-          eksperimental që kombinon AI dhe lajmet për të rritur transparencën dhe për t'ju dhënë një 
-          pamje më të plotë të asaj që po ndodh në shoqëri.
+          LajmAI nuk është portal lajmesh dhe nuk përfaqëson asnjë parti politike apo media të
+          veçantë; është një mjet eksperimental që kombinon AI dhe lajmet për të rritur
+          transparencën dhe për t’ju dhënë një pamje më të plotë e më të shumëanshme të asaj që po
+          ndodh në shoqëri. Pas këtij projekti qëndron një person akademik me përvojë shumëvjeçare
+          në fushën e inteligjencës artificiale, i angazhuar në kërkim shkencor dhe mësimdhënie
+          universitare, gjë që siguron një qasje serioze, kërkimore dhe afatgjatë ndaj zhvillimit
+          të platformës.
         </p>
         
         <div style={{

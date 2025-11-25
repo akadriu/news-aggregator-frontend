@@ -33,19 +33,25 @@ const ClusterPage = () => {
             });
     }, [category, clusterId, navigate]);
 
+    // Helper function to get proxied image URL
+    const getProxiedImageUrl = (imageUrl) => {
+        if (!imageUrl) return "/fallback.jpg";
+        return `${process.env.REACT_APP_API_URL}/proxy/image?url=${encodeURIComponent(imageUrl)}`;
+    };
+
     // if (loading) return <div>Loading...</div>;
     
     if (error) {
         return (
             <div className="error-container">
-                <h2> </h2>
-                <p> </p>
+                <h2>Error Loading Cluster</h2>
+                <p>Unable to load cluster data. Redirecting...</p>
                 <p>
                     <a href={`/category/${category}`} onClick={(e) => {
                         e.preventDefault();
                         navigate(`/category/${category}`);
                     }}>
-                        
+                        Go back to {category}
                     </a>
                 </p>
             </div>
@@ -55,13 +61,13 @@ const ClusterPage = () => {
     if (!clusterData || !clusterData.articles || clusterData.articles.length === 0) {
         return (
             <div className="error-container">
-                <h2> </h2>
-                <p> </p>
+                <h2>No Articles Found</h2>
+                <p>This cluster has no articles available.</p>
                 <a href={`/category/${category}`} onClick={(e) => {
                     e.preventDefault();
                     navigate(`/category/${category}`);
                 }}>
-                    {/* Back to  {category} */}
+                    Back to {category}
                 </a>
             </div>
         );
@@ -77,7 +83,15 @@ const ClusterPage = () => {
                     <li key={article.link} className="article-item">
                         <div className="cluster-header">
                             {article.image_url && (
-                                <img src={article.image_url} referrerPolicy="no-referrer" alt="" className="article-image" onError={(e) => { e.target.src = "/fallback.jpg"; }} />
+                                <img 
+                                    src={getProxiedImageUrl(article.image_url)} 
+                                    alt={article.title} 
+                                    className="article-image" 
+                                    onError={(e) => { 
+                                        console.log('Image failed to load:', article.image_url);
+                                        e.target.src = "/fallback.jpg"; 
+                                    }} 
+                                />
                             )}
                             <div className="article-details">
                                 <a href={article.link} target="_blank" rel="noopener noreferrer">
