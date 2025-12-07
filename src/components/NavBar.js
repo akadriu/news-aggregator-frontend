@@ -6,11 +6,29 @@ import MobileMenu from './MobileMenu';
 const NavBar = () => {
   const [categories, setCategories] = useState([]);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    axios.get(`${process.env.REACT_APP_API_URL}/categories`)
+    axios
+      .get(`${process.env.REACT_APP_API_URL}/categories`)
       .then(response => setCategories(response.data))
       .catch(error => console.error('Error fetching categories:', error));
+  }, []);
+
+  // Detect mobile / desktop
+  useEffect(() => {
+    const handleResize = () => {
+      const mobile = window.innerWidth <= 768;
+      setIsMobile(mobile);
+      if (!mobile) {
+        // if we go to desktop, make sure menu is closed
+        setIsMenuOpen(false);
+      }
+    };
+
+    handleResize(); // run once on mount
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const toggleMenu = () => {
@@ -22,7 +40,13 @@ const NavBar = () => {
       <nav className="nav-bar">
         <div className="nav-inner">
           <div className="nav-left">
-            <button className="hamburger" onClick={toggleMenu}>☰</button>
+            {/* Hamburger only on mobile */}
+            {isMobile && (
+              <button className="hamburger" onClick={toggleMenu}>
+                ☰
+              </button>
+            )}
+
             <Link to="/">
               <span className="logo-main">Lajm</span>
               <span className="logo-ai">AI</span>
@@ -42,11 +66,17 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-
         </div>
       </nav>
 
-      <MobileMenu isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} categories={categories} />
+      {/* Mobile menu only rendered on mobile */}
+      {isMobile && (
+        <MobileMenu
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+          categories={categories}
+        />
+      )}
     </>
   );
 };

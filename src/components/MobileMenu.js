@@ -1,12 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './MobileMenu.css';
-
+// after <li><Link to="/category/Kryesore" onClick={onClose}>Kryesore</Link></li>
 const MobileMenu = ({ isOpen, onClose, categories }) => {
   return (
     <div className={`mobile-menu ${isOpen ? 'open' : ''}`}>
       <ul className="menu-links">
-        <li><Link to="/category/Kryesore" onClick={onClose}>Kryesore</Link></li>
         {categories
           .filter((category) => category !== 'Kryesore')
           .map((category) => (
