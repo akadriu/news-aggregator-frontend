@@ -6,6 +6,7 @@ import { timeDifference } from '../utils/timeUtils';
 const CategoryList = () => {
     const [categories, setCategories] = useState([]);
     const [categoryData, setCategoryData] = useState({});
+    const [topLajme, setTopLajme] = useState([]);
     const [loading, setLoading] = useState(true);
     const [loadingProgress, setLoadingProgress] = useState(0);
 
@@ -23,35 +24,105 @@ const CategoryList = () => {
             });
     }, []);
 
+    // Calculate trending score based on article count and freshness
+    // Freshness is weighted more heavily to prioritize breaking news
+    const calculateTrendingScore = (clusterData) => {
+        const articles = clusterData.articles || [];
+        const articleCount = articles.length;
+        
+        if (articleCount === 0) return 0;
+
+        // Calculate average freshness (in hours from now)
+        const now = new Date();
+        let totalFreshnessScore = 0;
+        
+        articles.forEach(article => {
+            if (article.fetch_date) {
+                const articleDate = new Date(article.fetch_date);
+                const hoursAgo = (now - articleDate) / (1000 * 60 * 60);
+                // Fresher articles get higher scores (inverse of hours ago)
+                // Max freshness score is 36 (for very recent), min approaches 0
+                const freshnessScore = Math.max(0, 36 - hoursAgo);
+                totalFreshnessScore += freshnessScore;
+            }
+        });
+
+        const avgFreshness = totalFreshnessScore / articleCount;
+        
+        // Combined score: freshness weighted heavily + article count bonus
+        // Fresher news ranks higher, but still consider coverage (article count)
+        const score = (avgFreshness * 5) + (articleCount * 3);
+        
+        return score;
+    };
+
     const fetchAllCategoryData = async (categoryList) => {
         const categoryDataMap = {};
+        const allClusters = []; // Collect all clusters for top lajme calculation
         let completed = 0;
 
         // Fetch all categories simultaneously
         const promises = categoryList.map(async (category) => {
             try {
                 const response = await axios.get(`${process.env.REACT_APP_API_URL}/category/${category}`);
-                const sortedClusters = Object.entries(response.data).slice(0, 3);
-                categoryDataMap[category] = sortedClusters;
+                const clusters = response.data;
+                
+                // Store all clusters for this category
+                categoryDataMap[category] = clusters;
+                
+                // Collect clusters with their category info for top lajme calculation
+                Object.entries(clusters).forEach(([clusterId, clusterData]) => {
+                    allClusters.push({
+                        category,
+                        clusterId,
+                        clusterData,
+                        trendingScore: calculateTrendingScore(clusterData)
+                    });
+                });
                 
                 completed++;
                 setLoadingProgress(Math.round((completed / categoryList.length) * 100));
                 
-                return { category, data: sortedClusters };
+                return { category, data: clusters };
             } catch (error) {
                 console.error(`Error fetching data for category ${category}:`, error);
-                categoryDataMap[category] = [];
+                categoryDataMap[category] = {};
                 completed++;
                 setLoadingProgress(Math.round((completed / categoryList.length) * 100));
-                return { category, data: [] };
+                return { category, data: {} };
             }
         });
 
         // Wait for ALL categories to complete
         await Promise.all(promises);
         
-        // Now set all data at once and stop loading
-        setCategoryData(categoryDataMap);
+        // Sort all clusters by trending score and get top 4
+        const sortedClusters = allClusters.sort((a, b) => b.trendingScore - a.trendingScore);
+        const topClusters = sortedClusters.slice(0, 4);
+        
+        console.log('Top Lajme clusters:', topClusters.map(c => ({
+            category: c.category,
+            title: c.clusterData.articles[0]?.title,
+            score: c.trendingScore,
+            articleCount: c.clusterData.articles?.length
+        })));
+        
+        // Create a set of top cluster IDs to exclude from category display
+        const topClusterKeys = new Set(
+            topClusters.map(c => `${c.category}-${c.clusterId}`)
+        );
+        
+        // Filter category data to exclude top lajme clusters and limit to 3 per category
+        const filteredCategoryData = {};
+        Object.entries(categoryDataMap).forEach(([category, clusters]) => {
+            const filteredClusters = Object.entries(clusters)
+                .filter(([clusterId]) => !topClusterKeys.has(`${category}-${clusterId}`))
+                .slice(0, 3);
+            filteredCategoryData[category] = filteredClusters;
+        });
+        
+        setTopLajme(topClusters);
+        setCategoryData(filteredCategoryData);
         setLoading(false);
     };
 
@@ -74,6 +145,15 @@ const CategoryList = () => {
 
     return (
         <div className="categories">
+            {/* TOP LAJME SECTION */}
+            {topLajme.length > 0 && (
+                <TopLajmeSection 
+                    topLajme={topLajme} 
+                    limitSummary={limitSummary} 
+                />
+            )}
+            
+            {/* CATEGORY SECTIONS */}
             {categories.length === 0 ? (
                 <p>No categories available</p>
             ) : (
@@ -86,6 +166,59 @@ const CategoryList = () => {
                     />
                 ))
             )}
+        </div>
+    );
+};
+
+// Top Lajme section - same format as CategoryPreview
+const TopLajmeSection = ({ topLajme, limitSummary }) => {
+    return (
+        <div className="category-preview">
+            <h2><span style={{ color: '#cc0000', textDecoration: 'none' }}>Top Lajme</span></h2>
+            <ul>
+                {topLajme.map(({ category, clusterId, clusterData }) => (
+                    <li key={`${category}-${clusterId}`} className="news-cluster">
+                        <div className="cluster-header">
+                            {clusterData.articles[0].image_url && (
+                                <img 
+                                    src={clusterData.articles[0].image_url} 
+                                    referrerPolicy="no-referrer" 
+                                    alt="" 
+                                    className="article-image" 
+                                    onError={(e) => { e.target.src = "/fallback.jpg"; }} 
+                                />
+                            )}
+                            <div className="article-details">
+                                <a href={clusterData.articles[0].link} target="_blank" rel="noopener noreferrer">
+                                    <h3 className="article-title">{clusterData.articles[0].title} - {clusterData.articles[0].portal}</h3>
+                                </a>
+                                <p className="time-portal">{`${timeDifference(clusterData.articles[0].fetch_date)} - ${clusterData.articles[0].portal}`}</p>
+                                <p>{limitSummary(clusterData.articles[0].summary)}</p>
+                            </div>
+                        </div>
+                        <div className="links-column">
+                            {clusterData.articles.slice(1, 3).map(article => (
+                                <a key={article.link} href={article.link} target="_blank" rel="noopener noreferrer" className="portal-link separate-link">
+                                    {article.title} - {article.portal}
+                                </a>
+                            ))}
+                        </div>
+                        <div className="links-row">
+                            {clusterData.articles.slice(6, 10).map(article => (
+                                <a key={article.link} href={article.link} target="_blank" rel="noopener noreferrer" className="portal-link">
+                                    {article.portal}
+                                </a>
+                            ))}
+                            {clusterData.articles.length > 10 && <span>...</span>}
+                            {clusterData.articles.length >= 4 && (
+                                <Link to={`/category/${category}/cluster/${clusterId}`} className="view-all-link">
+                                    Te gjitha lajmet
+                                </Link>
+                            )}
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 };
