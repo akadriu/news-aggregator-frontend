@@ -25,7 +25,7 @@ const CategoryList = () => {
     }, []);
 
     // Calculate trending score based on article count and freshness
-    // Freshness is weighted more heavily to prioritize breaking news
+    // Freshness is weighted HEAVILY to prioritize breaking news
     const calculateTrendingScore = (clusterData) => {
         const articles = clusterData.articles || [];
         const articleCount = articles.length;
@@ -49,9 +49,9 @@ const CategoryList = () => {
 
         const avgFreshness = totalFreshnessScore / articleCount;
         
-        // Combined score: freshness weighted heavily + article count bonus
-        // Fresher news ranks higher, but still consider coverage (article count)
-        const score = (avgFreshness * 5) + (articleCount * 3);
+        // Combined score: freshness is dominant factor
+        // Breaking news (minutes old) will always beat older stories
+        const score = (avgFreshness * 10) + (articleCount * 3);
         
         return score;
     };
@@ -179,15 +179,13 @@ const TopLajmeSection = ({ topLajme, limitSummary }) => {
                 {topLajme.map(({ category, clusterId, clusterData }) => (
                     <li key={`${category}-${clusterId}`} className="news-cluster">
                         <div className="cluster-header">
-                            {clusterData.articles[0].image_url && (
-                                <img 
-                                    src={clusterData.articles[0].image_url} 
-                                    referrerPolicy="no-referrer" 
-                                    alt="" 
-                                    className="article-image" 
-                                    onError={(e) => { e.target.src = "/fallback.jpg"; }} 
-                                />
-                            )}
+                            <img 
+                                src={clusterData.articles[0].image_url || "/fallback.jpg"} 
+                                referrerPolicy="no-referrer" 
+                                alt="" 
+                                className="article-image" 
+                                onError={(e) => { e.target.src = "/fallback.jpg"; }} 
+                            />
                             <div className="article-details">
                                 <a href={clusterData.articles[0].link} target="_blank" rel="noopener noreferrer">
                                     <h3 className="article-title">{clusterData.articles[0].title} - {clusterData.articles[0].portal}</h3>
@@ -231,15 +229,13 @@ const CategoryPreview = ({ category, topClusters, limitSummary }) => {
                 {topClusters.map(([clusterId, clusterData]) => (
                     <li key={clusterId} className="news-cluster">
                         <div className="cluster-header">
-                            {clusterData.articles[0].image_url && (
-                                <img 
-                                    src={clusterData.articles[0].image_url} 
-                                    referrerPolicy="no-referrer" 
-                                    alt="" 
-                                    className="article-image" 
-                                    onError={(e) => { e.target.src = "/fallback.jpg"; }} 
-                                />
-                            )}
+                            <img 
+                                src={clusterData.articles[0].image_url || "/fallback.jpg"} 
+                                referrerPolicy="no-referrer" 
+                                alt="" 
+                                className="article-image" 
+                                onError={(e) => { e.target.src = "/fallback.jpg"; }} 
+                            />
                             <div className="article-details">
                                 <a href={clusterData.articles[0].link} target="_blank" rel="noopener noreferrer">
                                     <h3 className="article-title">{clusterData.articles[0].title} - {clusterData.articles[0].portal}</h3>

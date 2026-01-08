@@ -82,17 +82,15 @@ const ClusterPage = () => {
                 {clusterData.articles.map((article) => (
                     <li key={article.link} className="article-item">
                         <div className="cluster-header">
-                            {article.image_url && (
-                                <img 
-                                    src={getProxiedImageUrl(article.image_url)} 
-                                    alt={article.title} 
-                                    className="article-image" 
-                                    onError={(e) => { 
-                                        console.log('Image failed to load:', article.image_url);
-                                        e.target.src = "/fallback.jpg"; 
-                                    }} 
-                                />
-                            )}
+                            <img 
+                                src={getProxiedImageUrl(article.image_url)} 
+                                alt={article.title} 
+                                className="article-image" 
+                                onError={(e) => { 
+                                    console.log('Image failed to load:', article.image_url);
+                                    e.target.src = "/fallback.jpg"; 
+                                }} 
+                            />
                             <div className="article-details">
                                 <a href={article.link} target="_blank" rel="noopener noreferrer">
                                     <h3 className="article-title">{article.title}</h3>
