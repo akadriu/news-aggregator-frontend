@@ -27,53 +27,25 @@ function Impressum() {
         color: '#1a1a1a',
         marginBottom: '15px'
       }}>
-        <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          Kjo faqe shoqëron një agregator lajmesh në shqip, të ndërtuar me inteligjencë artificiale.
-          Qëllimi është të sjellë lajmet kryesore nga disa media në një vend të vetëm, në mënyrë që
-          të kuptohet më qartë çfarë po ndodh.
+                <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
+          LajmAI është një agregator lajmesh në gjuhën shqipe, i ndërtuar me inteligjencë artificiale. Synimi është krijimi i një pasqyrë të përgjithshme të ngjarjeve aktuale.
         </p>
 
         <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          Sistemi mbledh lajmet e fundit nga faqet relevante në gjuhën shqipe, i grupon sipas temave
-          dhe ngjarjeve dhe ndihmon të krahasohet se si media të ndryshme raportojnë për të njëjtën
-          histori. Përveç vetë lajmeve, platforma tregon edhe se kush është në qendër të vëmendjes.
+          Platforma mbledh lajmet e fundit nga faqet relevante dhe i grupon sipas temave dhe ngjarjeve, duke mundësuar dhe krahasimin mes raportimit nga media të ndryshme, si dhe identifikimin e personazheve në qendër të vëmendjes. Majtas shfaqet lista e entiteteve (personazhe ose institucione) që përmenden më shpesh në lajmet e 36 orëve të fundit. Djathtas, funksioni i kërkimit ju ndihmon të kërkoni brenda lajmeve të 36 orëve të fundit për çdo emër, temë ose fjalë kyçe që ju intereson dhe të gjeni menjëherë të gjithë artikujt që lidhen me të.
         </p>
 
         <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          Majtas shfaqet lista e entiteteve që përmenden më së shumti në lajmet e 36 orëve të fundit.
-          Kjo ju lejon të shihni kush dominon diskursin publik në një moment të caktuar. Djathtas
-          mund të përdorni kërkimin për të kërkuar brenda lajmeve të 36 orëve të fundit për çdo emër,
-          temë ose fjalë kyçe që ju intereson dhe të shihni menjëherë të gjitha artikujt që lidhen me të.
+          Platforma nuk prodhon lajme apo materiale të tjera origjinale; ajo vetëm analizon dhe i organizon përmbajtjet e faqeve të tjera. Lajmet procesohen nga algoritme kompjuterike që kemi dizajnuar dhe vazhdojmë t’i përmirësojmë. Përzgjedhja dhe pozicioni i lajmeve në faqe përcaktohen automatikisht nga këto algoritme, pa asnjë ndërhyrje njerëzore, çka mund të sjellë edhe gabime.
         </p>
 
         <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          Platforma nuk prodhon lajme apo përmbajtje origjinale; ajo vetëm i analizon dhe i organizon
-          përmbajtjet e faqeve të tjera. Lajmet mblidhen, rradhiten, grupohen dhe paraqiten përmes
-          algoritmeve kompjuterike që i kemi dizajnuar dhe vazhdojmë t’i përmirësojmë. Zgjedhja dhe
-          pozicioni i lajmeve në faqe përcaktohen automatikisht nga këto algoritme, pa ndërhyrje
-          njerëzore. Pikërisht për shkak se gjithçka bëhet automatikisht, janë të
-          mundshme edhe gabime, si në renditje ashtu edhe në grupim.
+          Një shtyllë e rëndësishme e projektit është respektimi i të drejtave të autorit. Platforma shfaq vetëm titullin original të artikullit, një fragment të shkurtër dhe një figurë të vogël shoqëruese. Nëse dëshironi të lexoni të gjithë artikullin, klikoni mbi titullin dhe dërgoheni në faqen origjinale të medias, ku mund ta lexoni të plotë. Ne nuk mbajmë asnjë përgjegjësi për vërtetësinë e informacionit të marrë nga burimet; besojmë se më shumë informacione do të thotë më shumë zgjedhje, më shumë liri dhe, në fund, më shumë fuqi për lexuesit.
         </p>
 
         <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          Një parim i rëndësishëm i projektit është respektimi i të drejtave të autorit. Platforma nuk
-          shfaq kurrë më shumë se titullin, një fragment të shkurtër dhe një figurë të
-          vogël të lajmit. Nëse dëshironi të lexoni të gjithë artikullin, mjafton të klikoni mbi titullin
-          dhe do të dërgoheni në faqen origjinale të medias, ku mund ta lexoni të plotë. Ne nuk mbajmë
-          asnjë përgjegjësi për vërtetësinë e informacionit të marrë nga burimet; besojmë se më shumë
-          informacione do të thotë më shumë zgjedhje, më shumë liri dhe, në fund, më shumë fuqi për
-          lexuesit.
+          LajmAI nuk është portal lajmesh dhe nuk përfaqëson asnjë parti politike apo media të veçantë; është një mjet eksperimental që kombinon AI dhe lajmet për të rritur transparencën dhe për t’ju dhënë një panoramë më të gjithanshme të asaj që po ndodh në shoqëri. Pas këtij projekti qëndron një person akademik me përvojë shumëvjeçare në fushën e inteligjencës artificiale, angazhim në kërkim shkencor dhe mësimdhënie universitare, si garanci për një përqasje serioze, kërkimore dhe afatgjatë ndaj zhvillimit të platformës.
         </p>
-
-        <p style={{ marginBottom: '15px', color: '#2a2a2a' }}>
-          LajmAI nuk është portal lajmesh dhe nuk përfaqëson asnjë parti politike apo media të
-          veçantë; është një mjet eksperimental që kombinon AI dhe lajmet për të rritur transparencën
-          dhe për t’ju dhënë një pamje më të plotë e më të shumëanshme të asaj që po ndodh në
-          shoqëri. Pas këtij projekti qëndron një person akademik me përvojë shumëvjeçare në fushën
-          e inteligjencës artificiale, angazhim në kërkim shkencor dhe mësimdhënie universitare, gjë
-          që siguron një qasje serioze, kërkimore dhe afatgjatë ndaj zhvillimit të platformës.
-        </p>
-
         
         <div style={{
           marginTop: '30px',
